@@ -52,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   static const double _img_circular = 8.0; //图片圆角
   static const double _myElevation = 0.0; //卡片阴影
+  static const int LIKE_YES = 1;
+  static const int LIKE_NO = 0;
   //渐变色
   var myGradientColor = BoxDecoration(
     gradient: LinearGradient(colors: [
@@ -68,101 +70,84 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var list = [
     {
-      "messageid": "123123",
+      "messageid": "1",
       "img":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
       "imghead":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
+      "username": "用户名1",
+      "userid": "1",
+      "messageinfo":
+          "这里是留言的具体内容，它最多两行，超出会省略,这里是留言的具体内容，它最多两行，超出会省略,这里是留言的具体内容，它最多两行，超出会省略",
+      "comment": "961",
+      "like": "56",
+      "like_yes": "0"
+    },
+    {
+      "messageid": "2",
+      "img":
+          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
+      "imghead":
+          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
+      "username": "用户名2",
+      "userid": "2",
       "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
       "comment": "96",
-      "like": "56"
+      "like": "56",
+      "like_yes": "1"
     },
     {
-      "messageid": "123123",
+      "messageid": "3",
       "img":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
       "imghead":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
-      "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略这里是留言的具体内容，它最多两行，超出会省略",
-      "comment": "96",
-      "like": "56"
-    },
-    {
-      "messageid": "123123",
-      "img":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "imghead":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
-      "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略这里是留言的具体内容，它最多两行，超出会省略",
-      "comment": "96",
-      "like": "56"
-    },
-    {
-      "messageid": "123123",
-      "img":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "imghead":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
+      "username": "用户名3",
+      "userid": "3",
       "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
       "comment": "96",
-      "like": "56"
+      "like": "56",
+      "like_yes": "0"
     },
     {
-      "messageid": "123123",
+      "messageid": "4",
       "img":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
       "imghead":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
+      "username": "用户名4",
+      "userid": "4",
       "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
       "comment": "96",
-      "like": "56"
+      "like": "56123",
+      "like_yes": "1"
     },
     {
-      "messageid": "123123",
+      "messageid": "5",
       "img":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
       "imghead":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
+      "username": "用户名5",
+      "userid": "5",
       "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
       "comment": "96",
-      "like": "56"
+      "like": "56123",
+      "like_yes": "1"
     },
     {
-      "messageid": "123123",
+      "messageid": "6",
       "img":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
       "imghead":
           "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
+      "username": "用户名6",
+      "userid": "6",
       "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
       "comment": "96",
-      "like": "56"
+      "like": "56123",
+      "like_yes": "1"
     },
-    {
-      "messageid": "123123",
-      "img":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "imghead":
-          "https://cdn.jsdelivr.net/gh/Quan666/CDN@master/pic/78075652_p0.png",
-      "username": "用户名",
-      "userid": "123",
-      "messageinfo": "这里是留言的具体内容，它最多两行，超出会省略",
-      "comment": "96",
-      "like": "56"
-    }
   ];
 
   Widget _getCard(index) {
@@ -180,62 +165,77 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(
                 flex: index == 0 ? 14 : 9,
-                child: new ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(_img_circular),
-                      topRight: Radius.circular(_img_circular),
-                    ),
-                    child: ExtendedImage.network(
-                      list[index]['img'],
-                      fit: BoxFit.cover,
-                      height: 500,
-                      width: 500,
-                      cache: true,
-                      //border: Border.all(color: Colors.red, width: 1.0),
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(_img_circular)),
-                      //cancelToken: cancellationToken,
-                    ))),
-            Expanded(
-                flex: 2,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 5, 5, 5),
-                      child: new ClipOval(
-                        child: ExtendedImage.network(
-                          list[index]['imghead'],
-                          width: 30.0,
-                          height: 30.0,
-                          fit: BoxFit.cover,
-                          cache: true,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(300.0)),
-                          //cancelToken: cancellationToken,
-                        ),
+                child: InkWell(
+                  onTap: () {
+                    print('进入留言 $index 详情页');
+                  },
+                  child: new ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(_img_circular),
+                        topRight: Radius.circular(_img_circular),
                       ),
-                    ),
-                    new Text(list[index]['username'],
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: new TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            color: Colors.black54)),
-                  ],
+                      child: ExtendedImage.network(
+                        list[index]['img'],
+                        fit: BoxFit.cover,
+                        height: 500,
+                        width: 500,
+                        cache: true,
+                        //border: Border.all(color: Colors.red, width: 1.0),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(_img_circular)),
+                        //cancelToken: cancellationToken,
+                      )),
                 )),
             Expanded(
                 flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(10, 0, 5, 5),
-                  child: new Text(list[index]['messageinfo'],
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: new TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 12,
-                      )),
+                child: InkWell(
+                  onTap: () {
+                    print("点击了用户:" + list[index]['username']);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 5, 5, 5),
+                        child: new ClipOval(
+                          child: ExtendedImage.network(
+                            list[index]['imghead'],
+                            width: 30.0,
+                            height: 30.0,
+                            fit: BoxFit.cover,
+                            cache: true,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(300.0)),
+                            //cancelToken: cancellationToken,
+                          ),
+                        ),
+                      ),
+                      new Text(list[index]['username'],
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: new TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                              color: Colors.black54)),
+                    ],
+                  ),
+                )),
+            Expanded(
+                flex: 2,
+                child: InkWell(
+                  onTap: () {
+                    print('进入留言详情页');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(10, 0, 5, 5),
+                    child: new Text(list[index]['messageinfo'],
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: new TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12,
+                        )),
+                  ),
                 )),
             Expanded(
                 flex: 1,
@@ -251,11 +251,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: ImageIcon(
                                 AssetImage('assets/comments.png'),
                                 color: Colors.black45,
-                                size: 12,
+                                size: 16,
                               )),
                           Padding(
                               padding: EdgeInsets.fromLTRB(2, 1, 5, 5),
-                              child: Text(list[index]['comment'],
+                              child: Text(list[index]['comment'].toString(),
                                   style: new TextStyle(
                                     color: Colors.black45,
                                     fontWeight: FontWeight.w400,
@@ -269,27 +269,50 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(2, 0, 0, 5),
-                              child: new InkWell(
-                                  // When the user taps the button, show a snackbar
-                                  onTap: () {
-                                    Scaffold.of(context)
-                                        .showSnackBar(new SnackBar(
-                                      content: new Text('Tap'),
-                                    ));
-                                  },
+                          new InkWell(
+                              // When the user taps the button, show a snackbar
+                              onTap: () async {
+                                print("like$index");
+
+                                setState(() {
+                                  if (list[index]['like_yes'] ==
+                                      LIKE_YES.toString()) {
+                                    list[index]['like_yes'] =
+                                        LIKE_NO.toString();
+                                    list[index]['like'] =
+                                        (int.parse(list[index]['like']) - 1)
+                                            .toString();
+                                    //之后调用服务器接口，不喜欢
+                                  } else {
+                                    list[index]['like_yes'] =
+                                        LIKE_YES.toString();
+                                    list[index]['like'] =
+                                        (int.parse(list[index]['like']) + 1)
+                                            .toString();
+                                    //之后调用服务器接口，喜欢
+                                  }
+                                });
+                              },
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 0, 0, 5),
                                   child: ImageIcon(
-                                    AssetImage('assets/like.png'),
+                                    list[index]['like_yes'] ==
+                                            LIKE_YES.toString()
+                                        ? AssetImage('assets/like_yes.png')
+                                        : AssetImage('assets/like.png'),
                                     //color: Color(0xdd0ec5c9),
                                     //color: Color(0xff54eb9e),
-                                    color: Colors.black45,
-                                    size: 12,
+                                    //color: Colors.black45,
+                                    color: list[index]['like_yes'] ==
+                                            LIKE_YES.toString()
+                                        ? Colors.red
+                                        : Colors.black45,
+                                    size: 16,
                                   ))),
                           Padding(
                               padding: EdgeInsets.fromLTRB(2, 1, 5, 5),
                               child: Text(
-                                list[index]['like'],
+                                list[index]['like'].toString(),
                                 style: new TextStyle(
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black45,
@@ -374,8 +397,10 @@ class _MyPage extends StatelessWidget {
           title: Text('测试页'),
         ),
         body: Center(
-          child:
-              RaisedButton(onPressed: () => Navigator.of(context).pop('返回结果')),
+          child: RaisedButton(
+            onPressed: () => Navigator.of(context).pop('返回结果'),
+            child: Text('点击返回'),
+          ),
         ),
       ),
     );
