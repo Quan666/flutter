@@ -62,10 +62,31 @@ class _MyHomePageState extends State<MyHomePage> {
     ], begin: Alignment.bottomLeft, end: Alignment.topRight),
   );
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  //上拉加载更多 监听
+  var _scrollController = new ScrollController(initialScrollOffset: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      var px = _scrollController.position.pixels;
+      if (px == _scrollController.position.maxScrollExtent) {
+        print("加载更多！");
+        _onLoadMore();
+      }
     });
+  }
+
+  Future<void> _onLoadMore() async {
+    setState(() {
+      // _load=2;
+    });
+    await await Future.delayed(Duration(milliseconds: 1500)); //模拟网络请求
+    setState(() {
+      // _imageList = _imageList + 5;
+      // _load=0;
+    });
+    print("_onLoadMore");
   }
 
   var list = [
@@ -265,35 +286,33 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          new InkWell(
-                              // When the user taps the button, show a snackbar
-                              onTap: () async {
-                                print("like$index");
+                        flex: 1,
+                        child: new InkWell(
+                          // When the user taps the button, show a snackbar
+                          onTap: () async {
+                            print("like$index");
 
-                                setState(() {
-                                  if (list[index]['like_yes'] ==
-                                      LIKE_YES.toString()) {
-                                    list[index]['like_yes'] =
-                                        LIKE_NO.toString();
-                                    list[index]['like'] =
-                                        (int.parse(list[index]['like']) - 1)
-                                            .toString();
-                                    //之后调用服务器接口，不喜欢
-                                  } else {
-                                    list[index]['like_yes'] =
-                                        LIKE_YES.toString();
-                                    list[index]['like'] =
-                                        (int.parse(list[index]['like']) + 1)
-                                            .toString();
-                                    //之后调用服务器接口，喜欢
-                                  }
-                                });
-                              },
-                              child: Padding(
+                            setState(() {
+                              if (list[index]['like_yes'] ==
+                                  LIKE_YES.toString()) {
+                                list[index]['like_yes'] = LIKE_NO.toString();
+                                list[index]['like'] =
+                                    (int.parse(list[index]['like']) - 1)
+                                        .toString();
+                                //之后调用服务器接口，不喜欢
+                              } else {
+                                list[index]['like_yes'] = LIKE_YES.toString();
+                                list[index]['like'] =
+                                    (int.parse(list[index]['like']) + 1)
+                                        .toString();
+                                //之后调用服务器接口，喜欢
+                              }
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
                                   padding: EdgeInsets.fromLTRB(2, 0, 0, 5),
                                   child: ImageIcon(
                                     list[index]['like_yes'] ==
@@ -308,20 +327,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ? Colors.red
                                         : Colors.black45,
                                     size: 16,
-                                  ))),
-                          Padding(
-                              padding: EdgeInsets.fromLTRB(2, 1, 5, 5),
-                              child: Text(
-                                list[index]['like'].toString(),
-                                style: new TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black45,
-                                  fontSize: 12,
-                                ),
-                              ))
-                        ],
-                      ),
-                    )
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(2, 1, 5, 5),
+                                  child: Text(
+                                    list[index]['like'].toString(),
+                                    style: new TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black45,
+                                      fontSize: 12,
+                                    ),
+                                  ))
+                            ],
+                          ),
+                        ))
                   ],
                 ))
           ],
@@ -333,6 +352,14 @@ class _MyHomePageState extends State<MyHomePage> {
       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: card,
     );
+  }
+
+  Future<void> _onRefresh() async {
+    print("下拉刷新");
+    await Future.delayed(Duration(milliseconds: 1500)); //模拟网络请求
+    setState(() {
+      list[0]['username'] = "刷新后";
+    });
   }
 
   @override
@@ -347,16 +374,18 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: myGradientColor,
           ),
         ),
-        body: new StaggeredGridView.countBuilder(
-          padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-          crossAxisCount: 4,
-          itemCount: list.length,
-          itemBuilder: (BuildContext context, int index) => _getCard(index),
-          staggeredTileBuilder: (int index) =>
-              new StaggeredTile.count(2, index == 0 ? 4 : 3),
-          mainAxisSpacing: 1,
-          crossAxisSpacing: 1,
-        ),
+        body: RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: new StaggeredGridView.countBuilder(
+              padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+              crossAxisCount: 4,
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) => _getCard(index),
+              staggeredTileBuilder: (int index) =>
+                  new StaggeredTile.count(2, index == 0 ? 4 : 3),
+              mainAxisSpacing: 1,
+              crossAxisSpacing: 1,
+            )),
         floatingActionButton: ClipOval(
           child: Container(
             width: 50,
